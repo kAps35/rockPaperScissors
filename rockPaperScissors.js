@@ -3,10 +3,6 @@ const rockBtn = document.querySelector('#rock');
 const paperBtn = document.querySelector('#paper');
 const scissorsBtn = document.querySelector('#scissors');
 
-const win = "You win!";
-const lose = "You lose!";
-const draw = "Draw";
-
 const div = document.querySelector('div');
 const scorePara = document.createElement('p');
 const msgPara = document.createElement('p');
@@ -41,23 +37,30 @@ function getPlayerChoice(playerSelection) {
 // Play Round
 function playRound(playerSelection, computerSelection) {
     if (playerSelection === computerSelection) {
-        console.log(draw);
+        msgPara.textContent = "Draw";
     } else if (playerSelection === 'rock' && computerSelection === 'scissors') {
+        msgPara.textContent = "You win! Rock beats Scissors";
         playerScore++;
-        console.log(win);
     } else if (playerSelection === 'paper' && computerSelection === 'rock') {
+        msgPara.textContent = "You win! Paper beats Rock";
         playerScore++;
-        console.log(win);
     } else if (playerSelection === 'scissors' && computerSelection === 'paper') {
+        msgPara.textContent = "You win! Scissors beats Paper";
         playerScore++;
-        console.log(win);
-    } else {
+    } else if (playerSelection === 'scissors' && computerSelection === 'rock') {
+        msgPara.textContent = "You lose! Rock beats Scissors";
         computerScore++;
-        console.log(lose);
+    } else if (playerSelection === 'paper' && computerSelection === 'scissors') {
+        msgPara.textContent = "You lose! Scissors beats Paper";
+        computerScore++
+    } else {
+        msgPara.textContent = "You lose! Paper beats Rock";
+        computerScore++
     }
 
     // Update the score in the DOM
     updateScore();
+    announceWinner();
 }
 
 //updateScore Function
@@ -65,3 +68,13 @@ function updateScore() {
     scorePara.textContent = `Player ${playerScore} x ${computerScore} Computer`;
 }
 
+//Announce winner and restart the game!
+function announceWinner() {
+    if (playerScore >= 5) {
+        confirm("You Won! Do you want to restart the game?");
+        window.location.reload();
+    } else if (computerScore >= 5) {
+        confirm("You Lost! Do you want to restart the game?");
+        window.location.reload();
+    }
+}
