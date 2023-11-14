@@ -6,16 +6,30 @@
     <title>Document</title>
 </head>
 <body>
+
+    <button id="rock">Rock</button>
+    <button id="paper">Paper</button>
+    <button id="scissors">Scissors</button>
+    
     <script>
+        const rockBtn = document.querySelector('#rock');
+        const paperBtn = document.querySelector('#paper');
+        const scissorsBtn = document.querySelector('#scissors');
+
+        rockBtn.addEventListener('click', () => getPlayerChoice('rock'));
+        paperBtn.addEventListener('click', () => getPlayerChoice('paper'));
+        scissorsBtn.addEventListener('click', () => getPlayerChoice('scissors'));
+        function getPlayerChoice(playerSelection){
+            const computerSelection = getComputerChoice();
+            playRound(playerSelection, computerSelection);
+        }      
+        
         function getComputerChoice() {
             const choices = ['rock', 'paper', 'scissors'];
             const index = Math.floor(Math.random() * choices.length);
             return choices[index];
         }
-
-        // console.log(getComputerChoice());
-        const playerSelection = prompt("Rock, Paper or Scissors?");
-        const computerSelection = getComputerChoice();
+        
         function playRound(playerSelection, computerSelection) {
             if (playerSelection === computerSelection) {
                 return console.log("Empate!");
@@ -29,10 +43,8 @@
                 return console.log("Você perdeu");
             }
         }
-        console.log(playerSelection);
-        console.log(computerSelection);
-        console.log(playRound(playerSelection, computerSelection));
-
+        // playRound();
+        // console.log(playRound(playerSelection, computerSelection));
     </script>
 </body>
 </html>
