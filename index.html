@@ -10,11 +10,23 @@
     <button id="rock">Rock</button>
     <button id="paper">Paper</button>
     <button id="scissors">Scissors</button>
+
+    <div>
+
+    </div>
     
     <script>
         const rockBtn = document.querySelector('#rock');
         const paperBtn = document.querySelector('#paper');
         const scissorsBtn = document.querySelector('#scissors');
+
+        const div = document.querySelector('div');
+        const result = document.createElement('p');
+        const score = document.createElement('h2');
+
+        div.appendChild(result);
+        
+
 
         rockBtn.addEventListener('click', () => getPlayerChoice('rock'));
         paperBtn.addEventListener('click', () => getPlayerChoice('paper'));
